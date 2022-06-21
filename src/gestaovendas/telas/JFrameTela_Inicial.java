@@ -5,6 +5,9 @@
  */
 package gestaovendas.telas;
 
+import gestaovendas.dao.ProdutoDAO;
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author lucas
@@ -31,10 +34,19 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mniCadastrarOperacao = new javax.swing.JMenuItem();
+        mniCadastrarCliente = new javax.swing.JMenuItem();
+        mniCadastrarProduto = new javax.swing.JMenuItem();
+        mniCadastrarCategoria = new javax.swing.JMenuItem();
+        mniCadastrarCor = new javax.swing.JMenuItem();
+        mniCadastrarMarca = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mniListaClientes = new javax.swing.JMenuItem();
+        mniListaProdutos = new javax.swing.JMenuItem();
+        mniListaCategorias = new javax.swing.JMenuItem();
+        mniListaCores = new javax.swing.JMenuItem();
+        mniListaMarcas = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,48 +61,129 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addComponent(jLabel1)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(318, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28))
         );
 
         jMenu1.setBackground(new java.awt.Color(153, 153, 255));
-        jMenu1.setText("Menu");
+        jMenu1.setText("Cadastros");
         jMenu1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jMenuItem1.setText("Cadastrar Operação");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mniCadastrarOperacao.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniCadastrarOperacao.setText("Cadastrar Operação");
+        mniCadastrarOperacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mniCadastrarOperacaoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(mniCadastrarOperacao);
 
-        jMenuItem3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jMenuItem3.setText("Cadastrar Cliente");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jMenuItem4.setText("Cadastrar Produto");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mniCadastrarCliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniCadastrarCliente.setText("Cadastrar Cliente");
+        mniCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mniCadastrarClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(mniCadastrarCliente);
 
-        jMenuItem6.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jMenuItem6.setText("Relatórios");
-        jMenu1.add(jMenuItem6);
+        mniCadastrarProduto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniCadastrarProduto.setText("Cadastrar Produto");
+        mniCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniCadastrarProdutoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniCadastrarProduto);
+
+        mniCadastrarCategoria.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniCadastrarCategoria.setText("Cadastrar Categoria");
+        mniCadastrarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniCadastrarCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniCadastrarCategoria);
+
+        mniCadastrarCor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniCadastrarCor.setText("Cadastrar Cor");
+        mniCadastrarCor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniCadastrarCorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniCadastrarCor);
+
+        mniCadastrarMarca.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniCadastrarMarca.setText("Cadastrar Marca");
+        mniCadastrarMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniCadastrarMarcaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniCadastrarMarca);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Listagem");
+        jMenu2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        mniListaClientes.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniListaClientes.setText("Clientes");
+        mniListaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniListaClientesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniListaClientes);
+
+        mniListaProdutos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniListaProdutos.setText("Produtos");
+        mniListaProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniListaProdutosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniListaProdutos);
+
+        mniListaCategorias.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniListaCategorias.setText("Categorias");
+        mniListaCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniListaCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniListaCategorias);
+
+        mniListaCores.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniListaCores.setText("Cores");
+        mniListaCores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniListaCoresActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniListaCores);
+
+        mniListaMarcas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mniListaMarcas.setText("Marcas");
+        mniListaMarcas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniListaMarcasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniListaMarcas);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Relatórios");
+        jMenu3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -108,13 +201,69 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void mniCadastrarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarOperacaoActionPerformed
+        JFrameCadastrarOperacao operacao = new JFrameCadastrarOperacao();
+        jPanel1.add(operacao);
+        operacao.setVisible(true);
+    }//GEN-LAST:event_mniCadastrarOperacaoActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void mniCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarProdutoActionPerformed
+        JFrameCadastrarProduto produto = new JFrameCadastrarProduto();
+        jPanel1.add(produto);
+        produto.setVisible(true);
+    }//GEN-LAST:event_mniCadastrarProdutoActionPerformed
+
+    private void mniCadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarCategoriaActionPerformed
+        JFrameCadastrarCategoria categoria = new JFrameCadastrarCategoria();
+        jPanel1.add(categoria);
+        categoria.setVisible(true);
+    }//GEN-LAST:event_mniCadastrarCategoriaActionPerformed
+
+    private void mniCadastrarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarMarcaActionPerformed
+        JFrameCadastrarMarca marca = new JFrameCadastrarMarca();
+        jPanel1.add(marca);
+        marca.setVisible(true);
+    }//GEN-LAST:event_mniCadastrarMarcaActionPerformed
+
+    private void mniCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarClienteActionPerformed
+        JFrameCadastrarCliente cliente = new JFrameCadastrarCliente();
+        jPanel1.add(cliente);
+        cliente.setVisible(true);
+    }//GEN-LAST:event_mniCadastrarClienteActionPerformed
+
+    private void mniCadastrarCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarCorActionPerformed
+        JFrameCadastrarCor cor = new JFrameCadastrarCor();
+        jPanel1.add(cor);
+        cor.setVisible(true);
+    }//GEN-LAST:event_mniCadastrarCorActionPerformed
+
+    private void mniListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniListaClientesActionPerformed
+
+    }//GEN-LAST:event_mniListaClientesActionPerformed
+
+    private void mniListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniListaProdutosActionPerformed
+        JFrameListaProdutos produtos = new JFrameListaProdutos();
+        jPanel1.add(produtos);
+        produtos.setVisible(true);
+    }//GEN-LAST:event_mniListaProdutosActionPerformed
+
+    private void mniListaCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniListaCategoriasActionPerformed
+        JFrameListaCategorias categoria = new JFrameListaCategorias();
+        jPanel1.add(categoria);
+        categoria.setVisible(true);
+    }//GEN-LAST:event_mniListaCategoriasActionPerformed
+
+    private void mniListaCoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniListaCoresActionPerformed
+        JFrameListaCores cores = new JFrameListaCores();
+        jPanel1.add(cores);
+        cores.setVisible(true);
+    }//GEN-LAST:event_mniListaCoresActionPerformed
+
+    private void mniListaMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniListaMarcasActionPerformed
+        JFrameListaMarcas marcas = new JFrameListaMarcas();
+        jPanel1.add(marcas);
+        marcas.setVisible(true);
+    }//GEN-LAST:event_mniListaMarcasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,11 +303,20 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mniCadastrarCategoria;
+    private javax.swing.JMenuItem mniCadastrarCliente;
+    private javax.swing.JMenuItem mniCadastrarCor;
+    private javax.swing.JMenuItem mniCadastrarMarca;
+    private javax.swing.JMenuItem mniCadastrarOperacao;
+    private javax.swing.JMenuItem mniCadastrarProduto;
+    private javax.swing.JMenuItem mniListaCategorias;
+    private javax.swing.JMenuItem mniListaClientes;
+    private javax.swing.JMenuItem mniListaCores;
+    private javax.swing.JMenuItem mniListaMarcas;
+    private javax.swing.JMenuItem mniListaProdutos;
     // End of variables declaration//GEN-END:variables
 }
