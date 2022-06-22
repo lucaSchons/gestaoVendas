@@ -5,8 +5,15 @@
  */
 package gestaovendas.telas;
 
+import gestaovendas.dao.OperacaoDAO;
 import gestaovendas.entidade.ModeloTabela;
+import gestaovendas.entidade.Produto;
+import gestaovendas.modelo.Operacao;
 import gestaovendas.modelo.OperacaoItem;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,10 +23,10 @@ import javax.swing.table.DefaultTableModel;
  * @author lucas
  */
 public class JFrameCadastrarOperacao extends javax.swing.JFrame {
-
-    /**
-     * Creates new form JFrameCadastrarVenda
-     */
+    
+    
+    ModeloTabela tableModel = new ModeloTabela();
+    
     public JFrameCadastrarOperacao() {
         initComponents();
 //        jTable_produtos.getColumnModel().getColumn(0).setPreferredWidth(60);
@@ -30,6 +37,11 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
 //        
         grupoOperacao.add(jRadioButton_compra);
         grupoOperacao.add(jRadioButton_venda);
+        
+       
+        
+        
+        
         
         
         
@@ -188,12 +200,12 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
         ));
         jTable_produtos.setName("tabela_produtos"); // NOI18N
         jTable_produtos.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jTable_produtosAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane1.setViewportView(jTable_produtos);
@@ -214,7 +226,9 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
-                                        .addGap(89, 89, 89)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jTextField_codCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(14, 14, 14)
                                         .addComponent(jTextField_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
@@ -229,15 +243,12 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
                                         .addComponent(jButton_cancelarTable, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(8, 8, 8))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTextField_codCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jTextField_codProduto)
-                                                    .addComponent(jTextField_quantidade, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))))
-                                        .addGap(21, 21, 21)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField_codProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                                            .addComponent(jTextField_quantidade))
+                                        .addGap(29, 29, 29)
                                         .addComponent(jLabel3)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField_valorUn)))
@@ -287,6 +298,11 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
 
         jButton_salvar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton_salvar.setText("SALVAR");
+        jButton_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_salvarActionPerformed(evt);
+            }
+        });
 
         jButton_cancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton_cancelar.setText("CANCELAR");
@@ -303,6 +319,11 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
         jLabel2.setText("DATA:");
 
         jFormattedTextField_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        try {
+            jFormattedTextField_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextField_data.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jFormattedTextField_data.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,18 +369,17 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jButton_salvar)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton_salvar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(jLabel8)
@@ -432,28 +452,96 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
     private void jButton_addTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_addTableActionPerformed
         int quantidade = Integer.parseInt(jTextField_quantidade.getText());
         int codigo_produto = Integer.parseInt(jTextField_codProduto.getText());
+        int codigo_cliente = Integer.parseInt(jTextField_codCliente.getText());
         String nome_produto = jTextField_produto.getText();
         Double valor_unitario = Double.parseDouble(jTextField_valorUn.getText());
         Double valor_total = quantidade * valor_unitario;
         
         adicionaProdutoNaTabela(quantidade, codigo_produto, nome_produto, valor_unitario, valor_total);
         
-        limpaPainelProdutos();
+        
         
         calculaValorTotal(valor_total);
         
     }//GEN-LAST:event_jButton_addTableActionPerformed
 
+    private void jButton_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salvarActionPerformed
+        try{
+            Operacao op = new Operacao();
+            op.setCodCliente(Integer.parseInt(jTextField_codCliente.getText()));
+            op.setValor_total(Double.parseDouble(jTextField_valorTotal.getText()));
+//            String data1 = jFormattedTextField_data.getText();
+//     
+//            DateFormat df1 = DateFormat.getDateInstance(DateFormat.MEDIUM, new Locale("en", "US"));
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String dataText = jFormattedTextField_data.getText();
+            System.out.println("data textfield: "+dataText);
+            Date date = formatter.parse(dataText);
+       
+            System.out.println(date);
+            op.setData(date);
+//            System.out.println(jFormattedTextField_data.getText());;
+//            java.util.Date data = new SimpleDateFormat("yyyy/MM/dd").parse(jFormattedTextField_data.getText());
+//            op.setData(df1.format(data1));
+//            System.out.println(data);
+            
+            Boolean isCompra = jRadioButton_compra.isSelected();
+            Boolean isVenda = jRadioButton_venda.isSelected();
+            
+            if(isCompra){
+                op.setTipo("C");
+            }else if(isVenda){
+                op.setTipo("V");
+            }
+            System.out.println(jTable_produtos.getRowCount());
+            //Adiciona operacaoItem
+            for(int linha = 0; linha < jTable_produtos.getRowCount(); linha++){
+                
+                //recupera valor das linhas/colunas da tabela
+                int codProduto = (Integer) jTable_produtos.getModel().getValueAt(linha, 0); //coluna 0 da tabela
+                int quantidade = (Integer) jTable_produtos.getModel().getValueAt(linha, 1); //coluna 1 da tabela
+                double valor_unitario = Double.parseDouble(jTable_produtos.getModel().getValueAt(linha, 2).toString());
+                System.out.println("cod produto: "+codProduto);
+                System.out.println("quantidade: "+quantidade);
+                System.out.println("valor unitario: "+valor_unitario);
+                //cria OperacaoItem pois esta classe esta associada com a operacao
+                OperacaoItem item = new OperacaoItem();
+                item.setCodProduto(codProduto);
+                item.setQuantidade(quantidade);
+                item.setValorUnitario(valor_unitario);
+                
+                //adiciona o item em operacao
+                op.adicionaOperacaoItem(item);
+                
+            }
+            
+            OperacaoDAO dao = new OperacaoDAO();
+            dao.inserir(op);
+            
+            
+            JOptionPane.showMessageDialog(null, "Operação salva com sucesso");
+            
+            
+            
+            
+     }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"ocorreu um erro em salvar operacao "+ ex.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_jButton_salvarActionPerformed
+
     public void adicionaProdutoNaTabela(int quantidade, int codigo_produto, String nome_produto, double valor_unitario, double valor_total){
         try{
             //Prepara linha da tabela
 //            Object[] linhaTabela = new Object[]{quantidade, codigo_produto, nome_produto, String.format("%.2f", valor_unitario), String.format("%.2f", valor_total)};
-           
+           String.format("%.2f", valor_unitario);
            OperacaoItem item = new OperacaoItem();
-           item.setQuantidade(quantidade);
            item.setCodProduto(codigo_produto);
-           item.setValortotal(valor_unitario);
-           ModeloTabela tableModel = new ModeloTabela();
+           item.setQuantidade(quantidade);
+           item.setValorUnitario(valor_unitario);
+           
+          
            jTable_produtos.setModel(tableModel);
            tableModel.addRow(item);
            
@@ -477,7 +565,8 @@ public class JFrameCadastrarOperacao extends javax.swing.JFrame {
     public void calculaValorTotal(double valor){
         double valor_total = Double.parseDouble(jTextField_valorTotal.getText()) + valor;
         
-        jTextField_valorTotal.setText(String.format("%.2f", valor_total));
+        jTextField_valorTotal.setText(String.valueOf(valor_total));
+        
     }
     /**
      * @param args the command line arguments
