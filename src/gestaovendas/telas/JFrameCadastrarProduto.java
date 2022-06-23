@@ -84,6 +84,8 @@ public class JFrameCadastrarProduto extends javax.swing.JFrame {
         jLabel3.setText("CATEGORIA:");
 
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCategoria.setSelectedIndex(cmbCategoria.getSelectedIndex());
+        cmbCategoria.setSelectedItem(cmbCategoria.getUI());
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
