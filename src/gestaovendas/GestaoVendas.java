@@ -1,9 +1,8 @@
 
 package gestaovendas;
 
+import java.sql.*;
 import gestaovendas.telas.JFrameTela_Inicial;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
 /**

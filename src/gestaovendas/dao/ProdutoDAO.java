@@ -154,15 +154,15 @@ public class ProdutoDAO implements IDAOT<Produto> {
         // cabecalho da tabela
         Object[] cabecalho = new Object[4];
         cabecalho[0] = "Código";
-        cabecalho[1] = "Nome";
+        cabecalho[1] = "Descrição";
         cabecalho[2] = "Tamanho";
         cabecalho[3] = "Preço de venda";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT count(*) FROM item "
-                    + "WHERE nome ILIKE '%" + criterio + "%'");
+                    + "SELECT count(*) FROM produto "
+                    + "WHERE descricao ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 
@@ -178,16 +178,16 @@ public class ProdutoDAO implements IDAOT<Produto> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT id, nome, tamanho, precovenda FROM item "
-                    + "WHERE nome ILIKE '%" + criterio + "%' "
-                    + "ORDER BY nome");
+                    + "SELECT id, descricao, tamanho, preco_venda FROM produto "
+                    + "WHERE descricao ILIKE '%" + criterio + "%' "
+                    + "ORDER BY descricao");
 
             while (resultadoQ.next()) {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id");
-                dadosTabela[lin][1] = resultadoQ.getString("nome");
+                dadosTabela[lin][1] = resultadoQ.getString("descricao");
                 dadosTabela[lin][2] = resultadoQ.getString("tamanho");
-                dadosTabela[lin][3] = resultadoQ.getDouble("precovenda");
+                dadosTabela[lin][3] = resultadoQ.getDouble("preco_venda");
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {

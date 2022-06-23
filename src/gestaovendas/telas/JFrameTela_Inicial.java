@@ -31,7 +31,6 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mniCadastrarOperacao = new javax.swing.JMenuItem();
@@ -52,23 +51,15 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO ALW SOFT.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(jLabel1)
-                .addContainerGap(380, Short.MAX_VALUE))
+            .addGap(0, 795, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(318, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28))
+            .addGap(0, 527, Short.MAX_VALUE)
         );
 
         jMenu1.setBackground(new java.awt.Color(153, 153, 255));
@@ -191,11 +182,15 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,13 +198,13 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
 
     private void mniCadastrarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarOperacaoActionPerformed
         JFrameCadastrarOperacao operacao = new JFrameCadastrarOperacao();
-        jPanel1.add(operacao);
+       
         operacao.setVisible(true);
     }//GEN-LAST:event_mniCadastrarOperacaoActionPerformed
 
     private void mniCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarProdutoActionPerformed
         JFrameCadastrarProduto produto = new JFrameCadastrarProduto();
-        jPanel1.add(produto);
+       
         produto.setVisible(true);
     }//GEN-LAST:event_mniCadastrarProdutoActionPerformed
 
@@ -227,7 +222,7 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
 
     private void mniCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCadastrarClienteActionPerformed
         JFrameCadastrarCliente cliente = new JFrameCadastrarCliente();
-        jPanel1.add(cliente);
+       
         cliente.setVisible(true);
     }//GEN-LAST:event_mniCadastrarClienteActionPerformed
 
@@ -243,7 +238,7 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
 
     private void mniListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniListaProdutosActionPerformed
         JFrameListaProdutos produtos = new JFrameListaProdutos();
-        jPanel1.add(produtos);
+      
         produtos.setVisible(true);
     }//GEN-LAST:event_mniListaProdutosActionPerformed
 
@@ -301,7 +296,6 @@ public class JFrameTela_Inicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
